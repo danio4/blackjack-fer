@@ -9,6 +9,8 @@ let deck         = [];
 const tipos      = ['C','D','H','S']
 const especiales = ['A','J','Q','K']
 
+
+// Crear deck
 const crearDeck = () => {
 
     for( let i = 2; i <= 10; i++) {
@@ -22,11 +24,27 @@ const crearDeck = () => {
             deck.push( esp + tipo)
         }
     }
-
-    console.log(deck);
+    // console.log(deck);
     deck = _.shuffle( deck )
     console.log(deck);
     return deck;
 }
 
 crearDeck()
+
+// Pedir carta
+const pedirCarta = () => {
+
+    if ( deck.length === 0) {
+        throw 'No hay cartas en el deck'
+    }
+    const carta = deck.pop()
+
+
+
+    console.log(deck);
+    console.log(carta);
+    return carta
+}
+
+pedirCarta()
