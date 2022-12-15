@@ -3,12 +3,19 @@
  * 2D = Two of Diamonds 
  * 2H = Two of Hearts 
  * 2S = Two of Spades 
- */
+ **/
 
 let deck         = [];
 const tipos      = ['C','D','H','S']
 const especiales = ['A','J','Q','K']
 
+let puntosJugador = 0,
+    puntosComputadora = 0
+
+// Referencias del HTML
+const btnPedir = document.querySelector('#btnPedir')
+
+const puntosHTML = document.querySelectorAll('small')
 
 // Crear deck
 const crearDeck = () => {
@@ -39,12 +46,29 @@ const pedirCarta = () => {
         throw 'No hay cartas en el deck'
     }
     const carta = deck.pop()
-
-
-
-    console.log(deck);
-    console.log(carta);
     return carta
 }
 
-pedirCarta()
+// pedirCarta()
+
+const valorCarta = ( carta ) => {
+
+    const valor = carta.substring(0, carta.length-1);
+    return ( isNaN( valor ) ) ?
+            ( valor === 'A' ) ? 11 : 10
+            : valor * 1;
+}
+
+
+
+
+// Eventos
+btnPedir.addEventListener('click', () => {
+
+    const carta = pedirCarta();
+    puntosJugador = puntosJugador + valorCarta( carta )
+    puntosHTML[0].innerText = puntosJugador;
+
+    
+
+})
