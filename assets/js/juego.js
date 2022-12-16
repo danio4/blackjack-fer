@@ -93,7 +93,7 @@ const turnoComputadora  = ( puntosMinimos ) => {
             alert('Computadora Gana')
         }
     }, 30 ); 
-}
+};
 
 
 
@@ -120,7 +120,7 @@ btnPedir.addEventListener('click', () => {
         btnDetener.disabled = true;
         turnoComputadora( puntosJugador );
     }
-})
+});
 
 btnDetener.addEventListener('click', () => {
     btnPedir.disabled   = true;
@@ -128,5 +128,24 @@ btnDetener.addEventListener('click', () => {
 
     turnoComputadora( puntosJugador )
 
-    
-})
+});
+
+btnNuevo.addEventListener('click', () => {
+
+    console.clear();
+
+    deck = []
+    deck = crearDeck();
+
+    puntosJugador     = 0;
+    puntosComputadora = 0;
+
+    puntosHTML[0].innerText = 0;
+    puntosHTML[1].innerText = 0;
+
+    divCartasComputadora.innerHTML = '';
+    divCartasJugador.innerHTML = '';
+
+    btnPedir.disabled   = false;
+    btnDetener.disabled = false;
+});
