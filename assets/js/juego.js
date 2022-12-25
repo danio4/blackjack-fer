@@ -13,8 +13,8 @@ const miModulo = (() => {
           btnNuevo   = document.querySelector('#btnNuevo');
 
     const divCartasJugadores = document.querySelectorAll('.divCartas'),
-          puntosHTML = document.querySelectorAll('small');
-
+          puntosHTML = document.querySelectorAll('small'),
+          titulo = document.querySelector('.titulo')
 
     // Esta función inicializa el juego
     const inicializarJuego = ( numJugadores = 2 ) => {
@@ -25,6 +25,7 @@ const miModulo = (() => {
             puntosJugadores.push(0);
         }
 
+        titulo.innerHTML = 'Blackjack';
         puntosHTML.forEach( elem => elem.innerText = 0 );
         divCartasJugadores.forEach( elem => elem.innerHTML = '' );
 
@@ -88,13 +89,15 @@ const miModulo = (() => {
 
         setTimeout(() => {
             if( puntosComputadora === puntosMinimos ) {
-                alert('Nadie gana :(');
+                titulo.innerHTML = 'Empate 🤡';
             } else if ( puntosMinimos > 21 ) {
-                alert('Computadora gana')
-            } else if( puntosComputadora > 21 ) {
-                alert('Jugador Gana');
+                titulo.innerHTML = 'Computadora gana 🤖';
+            } else if( puntosComputadora > 21 && puntosMinimos !== 21 ) {
+                titulo.innerHTML = 'Jugador gana 🏆';
+            } else if( puntosMinimos === 21 ) {
+                titulo.innerHTML = '21, Felicidades ¡Blackjack! 🔥'
             } else {
-                alert('Computadora Gana')
+                titulo.innerHTML = 'Computadora gana 🤖';
             }
         }, 100 ); 
 
@@ -125,13 +128,11 @@ const miModulo = (() => {
 
         
         if ( puntosJugador > 21 ) {
-            console.warn('Lo siento mucho, perdiste');
             btnPedir.disabled   = true;
             btnDetener.disabled = true;
             turnoComputadora( puntosJugador );
 
         } else if ( puntosJugador === 21 ) {
-            console.warn('21, genial!');
             btnPedir.disabled   = true;
             btnDetener.disabled = true;
             turnoComputadora( puntosJugador );
